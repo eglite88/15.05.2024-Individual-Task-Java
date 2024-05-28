@@ -21,19 +21,40 @@ public class Main {
   public static void main(String[] args) {
 
      System.out.print("Welcome to Tic-Tac-Toe game! Game grid is 3x3. You can choose where to put your symbol. First who get three on a row - WINS the game.");
-
+        System.out.println(); 
+ 
       int size = 3;
       char[][] grid = new char[size][size];
       initializeGrid(grid, size); //took from CHATGPT. Couldnt figure out bymyself
       Scanner scanner = new Scanner(System.in);
 
+      boolean gameWon = false;
+      boolean isXTurn = true;
+      int moves = 0;
+
+      while (!gameWon && moves < size * size) {
       printArray(grid, size);
       int row = enterRowAndColumn(scanner, "row");
       int column = enterRowAndColumn(scanner, "column");
-      addRowAndColumnInAGrid(grid, row, column);
-      printArray(grid, size);
-      }
+    
+          
+      while (!addRowAndColumnInAGrid(grid, row, column));{
+          System.out.println("This move is not valid. Try again.");
+          row = enterRowAndColumn(scanner, "row");
+          column = enterRowAndColumn(scanner, "column");
+    } //while 2
+      } //while 1
 
+      
+/* Missing
+1 represents X, 2 represents O, 0 represents empty)
+*/
+      
+  
+scanner.close();
+      
+  } // closing main void 
+    
    public static void initializeGrid(char[][] grid, int size) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -53,16 +74,17 @@ public class Main {
             System.out.print("Please enter a " + coordinate + " where to place a symbol (0-2): ");
              int number = scanner.nextInt();
              return number;
-}
-
-     public static void addRowAndColumnInAGrid(char[][] grid, int row, int column) {
-        if (row >= 0 && row < 3 && column >= 0 && column < 3 && grid[row][column] == '/') {
-            grid[row][column] = 'X'; 
-        } else {
-            System.out.println("This move is not valid");
-        }
     }
-}
+  
+         public static boolean addRowAndColumnInAGrid(char[][] grid, int row, int column) {
+           return row >= 0 && row < 3 && column >= 0 && column < 3 && grid[row][column] == '-'; 
+            }
+
+    /* 
+    Missing row, column, diagonal checks 
+    */ 
+        
+   } // closing main 
 
 
     
