@@ -16,22 +16,31 @@ After every move make sure the playing field is not full and make it draw, if it
 */ 
 
 import java.util.Scanner;
+
 public class Main {
   public static void main(String[] args) {
 
      System.out.print("Welcome to Tic-Tac-Toe game! Game grid is 3x3. You can choose where to put your symbol. First who get three on a row - WINS the game.");
- 
+
       int size = 3;
       char[][] grid = new char[size][size];
+      initializeGrid(grid, size); //took from CHATGPT. Couldnt figure out bymyself
       Scanner scanner = new Scanner(System.in);
-     
+
       printArray(grid, size);
-          int row = enterRowAndColumn(scanner, "row");
-          int column = enterRowAndColumn(scanner, "column");
-          addRowAndColumnInAGrid(grid, row, column);
-          printArray(grid, size);
+      int row = enterRowAndColumn(scanner, "row");
+      int column = enterRowAndColumn(scanner, "column");
+      addRowAndColumnInAGrid(grid, row, column);
+      printArray(grid, size);
       }
 
+   public static void initializeGrid(char[][] grid, int size) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                grid[i][j] = '-';
+            }
+        }
+    }
         public static void printArray(char[][] array, int size) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -41,19 +50,19 @@ public class Main {
         }
     }
         public static int enterRowAndColumn(Scanner scanner, String coordinate) {
-            System.out.print("Please enter a " + coordinate + " where to place a symbol (0-2): ");
+            System.out.print("Please enter a " + coordinate + " where to place a symbol (1-3): ");
              int number = scanner.nextInt();
              return number;
-    }
-  
-         public static void addRowAndColumnInAGrid(char[][] grid, int row, int column) {
-            if (row >= 0 && row < 3 && column >= 0 && column < 3 && grid[row][column] == '/') {
-                grid[row][column] = 'X'; 
-            } else {
-                System.out.println("This move is not valid");
-            }
+}
+
+     public static void addRowAndColumnInAGrid(char[][] grid, int row, int column) {
+        if (row >= 0 && row < 3 && column >= 0 && column < 3 && grid[row][column] == '/') {
+            grid[row][column] = 'X'; 
+        } else {
+            System.out.println("This move is not valid");
         }
     }
+}
 
 
     
