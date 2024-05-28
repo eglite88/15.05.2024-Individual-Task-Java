@@ -50,7 +50,7 @@ public class Main {
         }
     }
         public static int enterRowAndColumn(Scanner scanner, String coordinate) {
-            System.out.print("Please enter a " + coordinate + " where to place a symbol (1-3): ");
+            System.out.print("Please enter a " + coordinate + " where to place a symbol (0-2): ");
              int number = scanner.nextInt();
              return number;
 }
